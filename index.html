@@ -6,7 +6,7 @@
         content="mCLM: A Function-Infused and Synthesis-Friendly Modular Chemical Language Model">
   <meta name="keywords" content="mCLM, Chemical Language Model">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>mCLM: A Function-Infused and Synthesis-Friendly Modular Chemical Language Model</title>
+  <title>mCLM: A Modular Chemical Language Model that Generates Functional and Makeable  Molecules</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -22,8 +22,8 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -32,7 +32,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/favicon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -45,6 +45,7 @@
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
+      <!-- <div class="container is-fluid"> -->
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">mCLM: A Function-Infused and Synthesis-Friendly Modular Chemical Language Model</h1>
@@ -126,12 +127,20 @@
               </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="data_placeholder"
+                <a href="https://huggingface.co/datasets/language-plus-molecules/mCLM_Pretrain_1k"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="far fa-images"></i>
+                      <i class="fas fa-database"></i>
                   </span>
                   <span>Data</span>
+                  </a>
+              <span class="link-block">
+                <a href="https://blender02.cs.illinois.edu/mCLM"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-chalkboard"></i>
+                  </span>
+                  <span>Demo</span>
                   </a>
             </div>
 
@@ -145,7 +154,8 @@
 
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="container is-fluid">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -178,7 +188,8 @@
 
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="container is-fluid">
     <!--  A Function-Infused and Synthesis-Friendly Vocabulary -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -198,7 +209,8 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="container is-fluid">
     <!--  Chemical-Language Modeling -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -220,7 +232,8 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="container is-fluid">
     <!--  Critical Chemical Reasoning -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -230,7 +243,7 @@
           <p>Nature solves this through evolution, gradually refining molecules over billions of years. Inspired by this, we built a reasoning process into our model, mCLM, that allows it to refine its own molecule designs through multiple rounds of improvement.</p>
           <p>Here’s how it works: instead of trying to design the perfect molecule in one go, mCLM proposes a version of the molecule, evaluates its functional strengths and weaknesses, and then makes targeted edits to improve it. In each iteration, the model identifies which building blocks still have room for improvement and modifies them with a specific function in mind. This loop continues until either the model reaches a set number of steps or no further meaningful improvements can be made.</p>
           <figure>
-            <img src="./static/images/algorithm.png" alt="mCLM model" />
+            <img src="./static/images/algorithm.png" alt="mCLM model" style="width: 800px;" />
             <figcaption>Critical chemical reasoning for molecule design in mCLM</figcaption>
           </figure>
         </div>
@@ -240,7 +253,8 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="container is-fluid">
     <!--  Experimental Evaluation -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -270,7 +284,7 @@
           <p>Take <b>Evobrutinib</b>, which showed potential for treating multiple sclerosis but was halted due to liver toxicity. Or <b>TNG348</b>, designed to treat BRCA1/2-mutant cancers, but stopped in trials for similar reasons. These molecules represent high-impact opportunities for AI-driven optimization.</p>
           <p>Using <b>mCLM</b>, we can apply <b><i>multi-step functional reasoning</i></b> to repair these failed drugs. As shown in the figure below, the model first targets the known issue (e.g., liver toxicity), then sequentially improves other affected properties—like PGP for Evobrutinib or BBBP for TNG348. Each change is small, often modifying just <b><i>one building block at a time</i></b>, ensuring synthesizability remains intact.</p>
           <figure>
-            <img src="./static/images/admet1.png" alt="mCLM model" />
+            <img src="./static/images/admet1.png" alt="mCLM model" style="width: 800px;"/>
             <figcaption>Examples of fallen angel property modification</figcaption>
           </figure>
         </div>
@@ -280,7 +294,9 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop"> -->
+  <div class="container is-fluid">
+
     <!--  Conclusion -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -305,9 +321,21 @@
   </div>
 </section>
 
+<section class="section" id="License">
+  <!-- <div class="container is-max-desktop content"> -->
+    <div class="container is-fluid">
+    <h2 class="title">License</h2>
+    <p>
+    This project is licensed under Apache License 2.0. 
+    See the <a href="./static/Reserach User License Software.pdf" target="_blank">LICENSE</a> file for details.
+    </p>
+  </div>
+</section>
+
 
 <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
+  <!-- <div class="container is-max-desktop content"> -->
+    <div class="container is-fluid">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{edwards2025mclm,
   title={{mCLM}:  A Function-Infused and Synthesis-Friendly Modular Chemical Language Model},
