@@ -1,365 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="mCLM: A Function-Infused and Synthesis-Friendly Modular Chemical Language Model">
-  <meta name="keywords" content="mCLM, Chemical Language Model">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>mCLM: A Modular Chemical Language Model that Generates Functional and Makeable  Molecules</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mCLM</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    gtag('js', new Date());
+    body {
+      min-height: 100vh; /* allows scrolling */
+      background: url('./static/images/background.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      font-family: 'Noto Sans', sans-serif;
+    }
 
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    /* Logo + Title */
+    .logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 40px 0 15px 0;
+    }
 
+    .logo-title img {
+      width: 80px;
+      height: 80px;
+    }
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.png">
+    .logo-title h1 {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 4rem;
+      font-weight: bold;
+      margin: 0;
+    }
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+    /* Subtitle */
+    p.subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+      color: #ddd;
+      max-width: 800px;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+    }
+
+    .buttons button {
+      padding: 15px 30px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff6b6b;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .buttons button:hover {
+      background-color: #ff4757;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* News Section */
+    .news {
+      max-width: 800px;
+      margin-bottom: 50px;
+      text-align: left;
+      background-color: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .news h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    border-bottom: 2px solid #ff6b6b;
+    display: inline-block;
+    padding-bottom: 5px;
+    font-family: 'Noto Sans', sans-serif; /* changed from Castoro */
+  }
+
+    .news p {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    /* Demo Video */
+    .demo-video {
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .demo-video iframe {
+      width: 100%;
+      height: 450px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    @media (max-width: 600px) {
+      .logo-title h1 {
+        font-size: 3rem;
+      }
+
+      .logo-title img {
+        width: 50px;
+        height: 50px;
+      }
+
+      p.subtitle {
+        font-size: 1.2rem;
+      }
+
+      .buttons button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+
+      .demo-video iframe {
+        height: 250px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <!-- <div class="container is-fluid"> -->
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">mCLM: A Function-Infused and Synthesis-Friendly Modular Chemical Language Model</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://cnedwards.com/">Carl Edwards</a><sup>1*</sup>,</span>
-            <span class="author-block">
-              <a href="https://glaciohound.github.io/">Chi Han</a><sup>1*</sup>,</span>
-            <span class="author-block">
-              <a href="">Gawon Lee</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://thaonguyen217.github.io/">Thao Nguyen</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://peterjin.me/">Bowen Jin</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="">Chetan Kumar Prasad</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="">Sara Szymkuc</a><sup>4</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://grzybowski-group.net/people/bartosz.asp">Bartosz A. Grzybowski</a><sup>5,6</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://chbe.illinois.edu/people/profile/yingdiao">Ying Diao</a><sup>3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://hanj.cs.illinois.edu/">Jiawei Han</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.mit.edu/~geliu/">Ge Liu</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://haopeng-nlp.github.io/">Hao Peng</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://chemistry.illinois.edu/mdburke">Martin D. Burke</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://blender.cs.illinois.edu/hengji/research.html">Heng Ji</a><sup>1</sup>
-            </span>
-            
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Siebel School of Computing and Data Science, University of Illinois UrbanaChampaign</span>
-            <span class="author-block"><sup>2</sup>Department of Chemistry, University of Illinois Urbana-Champaign</span>
-            <span class="author-block"><sup>3</sup>Department of Chemical and Biomolecular Engineering, University of Illinois Urbana-Champaign</span>
-            <span class="author-block"><sup>4</sup>Allchemy Inc.</span>
-            <span class="author-block"><sup>5</sup>Ulsan National Institute of Science and Technology</span>
-            <span class="author-block"><sup>6</sup> Institute of Organic Chemistry, Polish Academy of Sciences</span>
-
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2505.12565"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-
-              <span class="link-block">
-                <a href="https://github.com/cnedwards/mCLM"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://huggingface.co/datasets/language-plus-molecules/mCLM_Pretrain_1k"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-database"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-              <span class="link-block">
-                <a href="https://blender02.cs.illinois.edu/mCLM"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-chalkboard"></i>
-                  </span>
-                  <span>Demo</span>
-                  </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Logo + Main Title -->
+  <div class="logo-title">
+    <img src="./static/images/favicon.png" alt="mCLM Logo">
+    <h1>mCLM</h1>
   </div>
-</section>
-</section>
 
+  <!-- Subtitle -->
+  <h3 class="title is-1 publication-title">
+    A modular chemical language model<br>
+    that generates functional and makeable molecules
+  </h3>
 
-<section class="section">
-  <!-- <div class="container is-max-desktop"> -->
-    <div class="container is-fluid">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
-        <div class="content has-text-justified">
-          
-            <!-- Despite their ability to understand chemical knowledge and accurately generate sequential representations, large language models (LLMs) remain limited in their capacity to propose novel molecules with drug-like properties.
-            In addition, the molecules that LLMs propose can often be challenging to make in the lab.
-            To more effectively enable the discovery of functional small molecules, LLMs need to learn a molecular language.
-            However, LLMs are currently limited by encoding molecules from atoms.
-            In this paper, we argue that just like tokenizing texts into (sub-)word tokens instead of characters, molecules should be decomposed and reassembled at the level of functional building blocks, i.e., parts of molecules that bring unique functions and serve as effective building blocks for real-world automated laboratory synthesis.
-            This motivates us to propose mCLM, a modular Chemical-Language Model tokenizing molecules into building blocks and learning a bilingual language model of both natural language descriptions of functions and molecule building blocks.
-            By reasoning on such functional building blocks, mCLM guarantees to generate efficiently synthesizable molecules thanks to recent progress in blockbased chemistry, while also improving the functions of molecules in a principled manner.
-            In experiments on 430 FDA-approved drugs, we find mCLM capable of significantly improving 5 out of 6 chemical functions critical to determining drug potentials.
-            More importantly, mCLM can reason on multiple functions and improve the FDA-rejected drugs (“fallen angels”) over multiple iterations to greatly improve their shortcomings. -->
-            <p>Large language models (LLMs) have shown they can understand chemistry and generate molecule-like strings. But when it comes to suggesting new drug-like molecules, they often fall short. Many of the molecules they create are hard to make in the lab and don’t have the right properties to be useful as real medicines. To do better, we believe LLMs need to learn the language of molecules—not just from atoms, but from meaningful building blocks. Just like words are made up of subwords, molecules can be broken down into <b><i>functional building blocks</i></b>—pieces that carry out specific roles in chemistry and are easier to assemble in the lab.</p>
-            <p>That’s why we created <b>mCLM</b>, a modular Chemical-Language Model. Instead of learning from atoms, mCLM learns from these building blocks and connects them with natural language descriptions of their functions. It’s like teaching the model a bilingual dictionary: one side is chemistry, the other is plain language. With this approach, mCLM can design molecules that are not only easier to synthesize but also more functional.</p>
-            <p>When tested on <b><i>430 FDA-approved drugs</i></b>, it improved 5 out of 6 key chemical properties linked to drug effectiveness. Even more exciting, it can refine failed drug candidates (sometimes called “fallen angels”) by reasoning over their weaknesses and improving them step by step.</p>
-            <p>Ultimately, mCLM opens the door to a new way of designing molecules, offering:</p>
-            <ol>
-              <li><b>Synthesis efficiency:</b> Molecules are designed in a modular way that makes them easier and faster to synthesize. The process is simple, general, and machine-friendly—ideal for rapid drug discovery and automated lab experiments.</li>
-              <li><b>Alignment with language models:</b> Just like natural language is broken into words, modularizing molecules provides a cleaner interface for language models to understand and generate chemical structures.</li>
-              <li><b>Reasoning:</b> With its ability to follow instructions and leverage large-scale knowledge, mCLM can iteratively refine molecules based on their intended functions—bringing LLMs one step closer to intelligent molecular design.</li>
-            </ol>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-</section>
+  <br>  
 
-
-<section class="section">
-  <!-- <div class="container is-max-desktop"> -->
-    <div class="container is-fluid">
-    <!--  A Function-Infused and Synthesis-Friendly Vocabulary -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">A Function-Infused and Synthesis-Friendly Vocabulary</h2>
-        <div class="content has-text-justified">
-          <p>In this work, we introduce a chemical vocabulary built from <b><i>synthesis-friendly building blocks</i></b>. This vocabulary is designed to support automated, step-by-step assembly of molecules—making the synthesis process faster and more reliable.</p>
-          <p>These building blocks aren’t just random pieces; they are chemically meaningful units closely tied to important molecular functions. For example, certain blocks might help a molecule bind to a protein target, influence enzyme activity, or interact with metabolic pathways. By working at this functional level, our model can quickly propose new molecules, automate their synthesis, and generate useful functional data as needed.</p>
-          <p>Unlike traditional SMILES strings—which turn molecules into linear sequences but sometimes break important chemical connections—our vocabulary reflects the real, physical layout of molecules. This means that the representation preserves how building blocks are actually connected in space, allowing for more natural and accurate molecule design. In short, this function-infused, synthesis-friendly vocabulary enables rapid, practical, and meaningful molecular discovery. The figure below illustrates how our tokenization method works.</p>
-          <figure>
-            <img src="./static/images/tokenizer.png" alt="Molecule tokenizer" />
-            <figcaption>An overview of the tokenization process. A functional molecule is first broken down by a synthesis-guaranteed tokenizer into building blocks designed for automated modular synthesis. These blocks are then checked to see if they fully represent the original molecule. If the coverage is complete, the blocks are used directly for pretraining. If not, the molecule is re-tokenized using a rule-based method to ensure full representation for training.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-    <!--/  A Function-Infused and Synthesis-Friendly Vocabulary -->
-</section>
-
-<section class="section">
-  <!-- <div class="container is-max-desktop"> -->
-    <div class="container is-fluid">
-    <!--  Chemical-Language Modeling -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Chemical-Language Modeling</h2>
-        <div class="content has-text-justified">
-          <p>The figure below illustrates the architecture of mCLM, our multimodal Chemical-Language Model. This sequential generative model processes both molecular and natural language sequences in a unified framework. At its core, mCLM leverages the Transformer architecture, which excels at handling sequential data and allows us to build on powerful pre-trained language models as a backbone.</p>
-          <figure>
-            <img src="./static/images/overall.png" alt="mCLM model" />
-            <figcaption>Overview of the mCLM, a multimodal chemical-language model that tokenizes molecules into building blocks. Trained on datasets containing molecular properties, functions, and synthesis information, mCLM performs critical chemical reasoning through an iterative process to progressively refine molecular designs.</figcaption>
-          </figure>
-          <p>After tokenizing molecules using the method described earlier, each molecular building block is encoded through graph neural networks (GNNs). These molecular representations are then seamlessly integrated with natural language embeddings at positions corresponding to molecule entity names. This creates a <b><i>“code-switched”</i></b> language that effectively blends molecular structures with their textual descriptions.</p>
-          <p>The combined feature sequence is fed into a Transformer decoder-only architecture, which predicts the next token based on all previously generated tokens. This setup enables pre-training on large, multimodal datasets, allowing the model to learn rich relationships between molecular structures and natural language. To maximize efficiency, mCLM is fine-tuned on top of open-source large language models pre-trained on general-domain text corpora. This approach leverages existing linguistic knowledge without the heavy computational burden of training from scratch.</p>
-          <p>Our training objective employs a unified categorical cross-entropy loss that jointly optimizes for both natural language tokens and molecular building blocks. Formally, the loss compares the true token distribution with the model’s predicted distribution over a shared vocabulary of words and molecular fragments. For natural language tokens, embeddings are directly sourced from the pre-trained language model. For molecular building blocks, embeddings are generated by passing their graph representations through GNNs, followed by a linear adapter that projects them into the same embedding space. This joint training mechanism enables mCLM to fluently “speak” the combined language of chemistry and natural language, bridging the gap between molecular structure and textual description in a single, elegant model.</p>
-
-        </div>
-      </div>
-    </div>
-    <!--/  Chemical-Language Modeling -->
-</section>
-
-<section class="section">
-  <!-- <div class="container is-max-desktop"> -->
-    <div class="container is-fluid">
-    <!--  Critical Chemical Reasoning -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Critical Chemical Reasoning</h2>
-        <div class="content has-text-justified">
-          <p>Designing a good molecule isn’t just about getting one property right—it’s about balancing many, often conflicting, chemical functions. Real-world drug design requires optimizing factors like toxicity, bioactivity, and binding affinity all at once. And improving one function can often hurt another. For instance, a molecule with strong potency might also turn out to be highly toxic, making it unsuitable as a drug.</p>
-          <p>Nature solves this through evolution, gradually refining molecules over billions of years. Inspired by this, we built a reasoning process into our model, mCLM, that allows it to refine its own molecule designs through multiple rounds of improvement.</p>
-          <p>Here’s how it works: instead of trying to design the perfect molecule in one go, mCLM proposes a version of the molecule, evaluates its functional strengths and weaknesses, and then makes targeted edits to improve it. In each iteration, the model identifies which building blocks still have room for improvement and modifies them with a specific function in mind. This loop continues until either the model reaches a set number of steps or no further meaningful improvements can be made.</p>
-          <figure>
-            <img src="./static/images/algorithm.png" alt="mCLM model" style="width: 800px;" />
-            <figcaption>Critical chemical reasoning for molecule design in mCLM</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-    <!--/  Critical Chemical Reasoning -->
-</section>
-
-<section class="section">
-  <!-- <div class="container is-max-desktop"> -->
-    <div class="container is-fluid">
-    <!--  Experimental Evaluation -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Experimental Evaluation</h2>
-        <div class="content has-text-justified">
-            <p>To evaluate how well our model-generated molecules perform, we created oracle models—predictive tools that estimate key drug-like properties. Specifically, we focused on ADMET properties: Absorption, Distribution, Metabolism, Excretion, and Toxicity. These are critical to understanding how a molecule might behave in the body. We selected six widely used evaluation tasks from the Therapeutics Data Commons (TDC) benchmark:</p>
-            <ul>
-              <li><b>AMES:</b> Mutagenicity (whether a molecule might cause genetic mutations)</li>
-              <li><b>BBBP:</b> Blood-brain barrier permeability</li>
-              <li><b>CYP3A4:</b> Inhibition of a key metabolic enzyme</li>
-              <li><b>DILI:</b> Drug-induced liver injury</li>
-              <li><b>HIA:</b> Human intestinal absorption</li>
-              <li><b>PGP:</b> Interaction with a transporter protein involved in drug resistance</li>
-            </ul>
-            <p>We built an ensemble of three models—FARM, ChemBERTA-2, and a GNN—to extract features from molecules and predict their drug-like properties. This gives us a robust way to evaluate how our generated molecules might perform.</p>
-            <p><b>Improving FDA-Approved Drugs with Out-of-Vocabulary Blocks</b></p>
-            <p>We tested mCLM on all 430 FDA-approved drugs made of at least 3 building blocks. Most of these molecules (426 out of 430) included blocks the model never saw during training—making this a tough out-of-distribution test. Despite this, mCLM improved 5 out of 6 key drug properties, as shown in the table below. This highlights the model’s ability to generalize and enhance real-world molecules, even with unfamiliar components.</p>
-          <div style="text-align: center;">
-            <figure>
-              <img src="./static/images/admet.png" alt="mCLM model" style="width: 300px;" />
-              <figcaption>Improvement in pharmacokinetic and toxicity properties for FDA-approved drugs with 3 or more building blocks after mCLM refinement.</figcaption>
-            </figure>
-          </div>
-          <br>
-          <p><b>Multi-step Critical Reasoning to Resurrect the “Fallen Angels”</b></p>
-          <p>Some drug candidates make it far in development but fail just before FDA approval—often due to a single critical issue. These "fallen angels" still hold great promise because their strengths are known, as are their weaknesses.</p>
-          <p>Take <b>Evobrutinib</b>, which showed potential for treating multiple sclerosis but was halted due to liver toxicity. Or <b>TNG348</b>, designed to treat BRCA1/2-mutant cancers, but stopped in trials for similar reasons. These molecules represent high-impact opportunities for AI-driven optimization.</p>
-          <p>Using <b>mCLM</b>, we can apply <b><i>multi-step functional reasoning</i></b> to repair these failed drugs. As shown in the figure below, the model first targets the known issue (e.g., liver toxicity), then sequentially improves other affected properties—like PGP for Evobrutinib or BBBP for TNG348. Each change is small, often modifying just <b><i>one building block at a time</i></b>, ensuring synthesizability remains intact.</p>
-          <figure>
-            <img src="./static/images/admet1.png" alt="mCLM model" style="width: 800px;"/>
-            <figcaption>Examples of fallen angel property modification</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-    <!--/  Experimental Evaluation -->
-</section>
-
-<section class="section">
-  <!-- <div class="container is-max-desktop"> -->
-  <div class="container is-fluid">
-
-    <!--  Conclusion -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Conclusion</h2>
-        <div class="content has-text-justified">
-          <p>We introduce <b>mCLM</b>, a molecular language model built on a <b><i>function-infused</i></b> and <b><i>synthesis-friendly vocabulary</i></b> By modularizing molecules into chemically meaningful building blocks and learning with natural language, mCLM enables multi-step functional reasoning to support iterative design, repair, and optimization of small molecules. Its synthesis-friendly vocabulary and compatibility with automated synthesis platforms make it especially suited for scalable, AI-driven molecular design. From generating novel compounds to reviving near-miss drug candidates, mCLM marks a practical and promising step toward truly intelligent molecular discovery.</p>
-          <p>We plan to release future mCLMs with more features by incorporating 3D molecular structures and physical constraints, enabling deeper understanding of molecular geometry and reactivity. Expanding into protein and nucleic acid sequences will let mCLM reason across biological functions, including protein-ligand interactions and genetic variation.</p>
-          <p>We'll also explore connections to simulation tools and chemical knowledge bases to enhance its reasoning over reaction dynamics and synthesis pathways. Looking forward, mCLM will engage in multi-agent systems—collaborating with AI agents, human scientists, and automated labs—to design molecules that are both novel and readily synthesizable.</p>
-        </div>
-      </div>
-    </div>
-    <!--/  Conclusion -->
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-
-
+  <!-- Buttons -->
+  <div class="buttons">
+    <a href="intro.html"><button>mCLM</button></a>
+    <a href="https://github.com/thaonguyen217/mclm"><button>Code</button></a>
+    <a href="https://huggingface.co/datasets/language-plus-molecules/mCLM_Pretrain_1k"><button>Data</button></a>
+    <a href="https://blender02.cs.illinois.edu/mCLM"><button>Demo</button></a>
+    <a href="https://arxiv.org/pdf/2505.12565"><button>Paper</button></a>
   </div>
-</section>
 
-<section class="section" id="License">
-  <!-- <div class="container is-max-desktop content"> -->
-    <div class="container is-fluid">
-    <h2 class="title">License</h2>
-    <p>
-    This project is licensed under Apache License 2.0. 
-    See the <a href="./static/Reserach User License Software.pdf" target="_blank">LICENSE</a> file for details.
-    </p>
+  <!-- News Section -->
+  <div class="news">
+    <h2>Latest News</h2>
+    <p><strong>mCLM 2.0 Released!</strong> Experience faster and more accurate molecular modeling. The new version includes improved functional group awareness, enhanced pretraining on larger datasets, and new visualization tools for researchers.</p>
+    <p>Stay tuned for upcoming tutorials and demos to see mCLM 2.0 in action.</p>
   </div>
-</section>
 
-
-<section class="section" id="BibTeX">
-  <!-- <div class="container is-max-desktop content"> -->
-    <div class="container is-fluid">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{edwards2025mclm,
-  title={{mCLM}:  A Function-Infused and Synthesis-Friendly Modular Chemical Language Model},
-  author={Carl Edwards, Chi Han, Gawon Lee, Thao Nguyen, Bowen Jin, Chetan Kumar Prasad, Sara Szymkuc, Bartosz A. Grzybowski, Ying Diao, Jiawei Han, Ge Liu, Hao Peng, Martin D. Burke, Heng Ji},
-  journal={arXiv preprint arXiv:2505.12565},
-  year={2025}
-}</code></pre>
+  <!-- Demo Video -->
+  <div class="demo-video">
+    <!-- Placeholder Video -->
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="mCLM Demo"></iframe>
   </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website's template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>. We thank the authors for open-sourcing their code.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
 
 </body>
 </html>
