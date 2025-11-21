@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00_SUMMARY</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --border-color: #ddd;
+            --bg-light: #f2f2f2;
+            --bg-code: #f4f4f4;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #95a5a6;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        
+        p {
+            margin: 10px 0;
+        }
+        
+        /* Tables */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+        
+        /* Code */
+        code {
+            background-color: var(--bg-code);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Courier New", "Consolas", monospace;
+            font-size: 13px;
+            color: #c7254e;
+        }
+        
+        pre {
+            background-color: var(--bg-code);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 13px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-color);
+        }
+        
+        .codehilite {
+            background-color: #f8f8f8;
+            border-left: 3px solid var(--primary-color);
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin-left: 0;
+            color: #555;
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px 20px;
+        }
+        
+        /* Links */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        /* Horizontal rule */
+        hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 30px 0;
+        }
+        
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Details/Summary (collapsible sections) */
+        details {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        details[open] {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            margin: -15px -15px 15px -15px;
+            background-color: #e8f4f8;
+            border-radius: 4px 4px 0 0;
+            user-select: none;
+        }
+        
+        summary:hover {
+            background-color: #d0e9f2;
+        }
+        
+        details[open] > summary {
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Special elements for drug analysis */
+        .success {
+            color: var(--success);
+        }
+        
+        .danger {
+            color: var(--danger);
+        }
+        
+        .warning {
+            color: var(--warning);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            h1 {
+                page-break-before: always;
+            }
+            
+            h1:first-of-type {
+                page-break-before: auto;
+            }
+            
+            table {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Fallen Angel Drugs - Optimization Summary</h1>
+
+<p><strong>Generated:</strong> 2025-11-17 00:31:43</p>
+
+<p><strong>Total Drugs:</strong> 23
+<strong>Successful:</strong> 23
+<strong>Errors:</strong> 0</p>
+
+<hr />
+
+<h2>Successfully Processed</h2>
+
+<table>
+<thead>
+<tr>
+  <th>#</th>
+  <th>Drug</th>
+  <th>Task</th>
+  <th>Output File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>Tarenflurbil (Flurizan)</td>
+  <td>BBBP</td>
+  <td><a href="01_Tarenflurbil_Flurizan.html">01<em>Tarenflurbil</em>Flurizan.html</a></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Gavestinel (GV-150,526)</td>
+  <td>BBBP</td>
+  <td><a href="02_Gavestinel_GV-150526.html">02<em>Gavestinel</em>GV-150526.html</a></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>NXY-059 (Cerovive)</td>
+  <td>BBBP</td>
+  <td><a href="03_NXY-059_Cerovive.html">03<em>NXY-059</em>Cerovive.html</a></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>PF-03758309 (PF-3758309)</td>
+  <td>HIA</td>
+  <td><a href="04_PF-03758309_PF-3758309.html">04<em>PF-03758309</em>PF-3758309.html</a></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>Olcegepant (BIBN-4096BS)</td>
+  <td>HIA</td>
+  <td><a href="05_Olcegepant_BIBN-4096BS.html">05<em>Olcegepant</em>BIBN-4096BS.html</a></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>EPI-506 (ralaniten acetate / prodrug of EPI-002)</td>
+  <td>HIA</td>
+  <td><a href="06_EPI-506_ralaniten_acetate__prodrug_of_EPI-002.html">06<em>EPI-506</em>ralaniten<em>acetate</em><em>prodrug</em>of_EPI-002.html</a></td>
+</tr>
+<tr>
+  <td>7</td>
+  <td>KPT-9274</td>
+  <td>HIA</td>
+  <td><a href="07_KPT-9274.html">07_KPT-9274.html</a></td>
+</tr>
+<tr>
+  <td>8</td>
+  <td>Valeresol</td>
+  <td>HIA</td>
+  <td><a href="08_Valeresol.html">08_Valeresol.html</a></td>
+</tr>
+<tr>
+  <td>9</td>
+  <td>Fialuridine (FIAU)</td>
+  <td>DILI</td>
+  <td><a href="09_Fialuridine_FIAU.html">09<em>Fialuridine</em>FIAU.html</a></td>
+</tr>
+<tr>
+  <td>10</td>
+  <td>Ximelagatran (Exanta / oral direct thrombin inhibitor)</td>
+  <td>DILI</td>
+  <td><a href="10_Ximelagatran_Exanta__oral_direct_thrombin_inhibitor.html">10<em>Ximelagatran</em>Exanta<em>_oral</em>direct<em>thrombin</em>inhibitor.html</a></td>
+</tr>
+<tr>
+  <td>11</td>
+  <td>Fasiglifam (TAK-875)</td>
+  <td>DILI</td>
+  <td><a href="11_Fasiglifam_TAK-875.html">11<em>Fasiglifam</em>TAK-875.html</a></td>
+</tr>
+<tr>
+  <td>12</td>
+  <td>Lapaquistat acetate (TAK-475)</td>
+  <td>DILI</td>
+  <td><a href="12_Lapaquistat_acetate_TAK-475.html">12<em>Lapaquistat</em>acetate_TAK-475.html</a></td>
+</tr>
+<tr>
+  <td>13</td>
+  <td>Danuglipron (Pfizer)</td>
+  <td>DILI</td>
+  <td><a href="13_Danuglipron_Pfizer.html">13<em>Danuglipron</em>Pfizer.html</a></td>
+</tr>
+<tr>
+  <td>14</td>
+  <td>Rosiglitazone</td>
+  <td>BBBP</td>
+  <td><a href="14_Rosiglitazone.html">14_Rosiglitazone.html</a></td>
+</tr>
+<tr>
+  <td>15</td>
+  <td>Paclitaxel / other taxanes</td>
+  <td>BBBP</td>
+  <td><a href="15_Paclitaxel__other_taxanes.html">15<em>Paclitaxel</em><em>other</em>taxanes.html</a></td>
+</tr>
+<tr>
+  <td>16</td>
+  <td>Mibefradil (Posicor)</td>
+  <td>CYP3A4</td>
+  <td><a href="16_Mibefradil_Posicor.html">16<em>Mibefradil</em>Posicor.html</a></td>
+</tr>
+<tr>
+  <td>17</td>
+  <td>Nefazodone (Serzone)</td>
+  <td>CYP3A4</td>
+  <td><a href="17_Nefazodone_Serzone.html">17<em>Nefazodone</em>Serzone.html</a></td>
+</tr>
+<tr>
+  <td>18</td>
+  <td>GSK1059615</td>
+  <td>HIA</td>
+  <td><a href="18_GSK1059615.html">18_GSK1059615.html</a></td>
+</tr>
+<tr>
+  <td>19</td>
+  <td>Neflamapimod (VX-745)</td>
+  <td>HIA</td>
+  <td><a href="19_Neflamapimod_VX-745.html">19<em>Neflamapimod</em>VX-745.html</a></td>
+</tr>
+<tr>
+  <td>20</td>
+  <td>SAR260301</td>
+  <td>CYP3A4</td>
+  <td><a href="20_SAR260301.html">20_SAR260301.html</a></td>
+</tr>
+<tr>
+  <td>21</td>
+  <td>Taranabant (MK-0364)</td>
+  <td>DILI</td>
+  <td><a href="21_Taranabant_MK-0364.html">21<em>Taranabant</em>MK-0364.html</a></td>
+</tr>
+<tr>
+  <td>22</td>
+  <td>NYX-059</td>
+  <td>BBBP</td>
+  <td><a href="22_NYX-059.html">22_NYX-059.html</a></td>
+</tr>
+<tr>
+  <td>23</td>
+  <td>AZD-3514</td>
+  <td>HIA</td>
+  <td><a href="23_AZD-3514.html">23_AZD-3514.html</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2>Errors</h2>
+
+<p><em>None</em></p>
+
+<hr />
+
+<h2>Configuration</h2>
+
+<ul>
+<li><strong>Number of beams:</strong> 12</li>
+<li><strong>Depth:</strong> 3</li>
+<li><strong>CSV source:</strong> /shared/nas2/knguye71/mCLM_nov/fallenangel.csv</li>
+</ul>
+
+<h2>Features Included</h2>
+
+<p>Each slide includes:
+- ✅ ADMET score predictions (6 tasks: ames, bbbp, cyp3a4, dili, hia, pgp)
+- ✅ QED (drug-likeness) analysis with change tracking
+- ✅ <strong>Molecular block count and changes</strong> (shows structural modifications)
+- ✅ Step-by-step optimization path with before/after comparisons
+- ✅ Safety threshold analysis
+- ✅ Overall improvement statistics</p>
+
+</body>
+</html>
